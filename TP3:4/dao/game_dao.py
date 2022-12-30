@@ -17,14 +17,16 @@ from model.surface_missile_launcher import SurfaceMissileLauncher
 from model.torpedos_launcher import TorpedoLauncher
 from model.weapon import Weapon
 
-engine = create_engine('sqlite:////tmp/tdlog.db', echo=True, future=True)
+engine = create_engine('tmp/tdlog.db', echo=True, future=True)
 Base = declarative_base(bind=engine)
 Session = sessionmaker(bind=engine)
+
 
 class GameEntity(Base):
  __tablename__ = 'game'
  id = Column(Integer, primary_key=True)
  players = relationship("PlayerEntity", back_populates="game", cascade="all, delete-orphan")
+
 
 class PlayerEntity(Base):
  __tablename__ = 'player'
@@ -33,6 +35,7 @@ class PlayerEntity(Base):
  game_id = Column(Integer, ForeignKey("game.id"), nullable=False)
  game = relationship("GameEntity", back_populates="players")
  battle_field = relationship("BattlefieldEntity", back_populates="player", uselist=False, cascade="all, delete-orphan")
+
 
 class BattlefieldEntity(Base):
  __tablename__ = 'battlefield'
@@ -67,6 +70,7 @@ class VesselEntity(Base):
  battle_field = relationship("BattlefieldEntity", back_populates="vessel")
  weapon = relationship("WeaponEntity", back_populates="vessel", uselist=False, cascade="all, delete-orphan")
 
+
 class WeaponEntity(Base):
  __tablename__ = 'weapon'
  id = Column(Integer, primary_key=True)
@@ -80,7 +84,7 @@ class WeaponEntity(Base):
  vessel_id = Column(Integer, ForeignKey("vessel.id"), nullable=False)
  battle_field = relationship("VesselEntity", back_populates="weapon")
 
-def map_to_game_entity(game: Game) -> GameEntity:
+def map_to_game_entity(game : Game) -> GameEntity:
     game_entity = GameEntity()
     if game.get_id() is not None:
         game_entity.id = game.get_id()
