@@ -1,0 +1,7 @@
+Il importe différentes classes de modèles, qui représentent des objets du jeu comme les joueurs, les navires, les armes et les champs de bataille. Ces classes sont utilisées pour définir des tables dans la base de données, ainsi que les relations entre ces tables.
+
+Un moteur de base de données SQLite est créé et une session de base de données est définie pour permettre l'accès à la base de données. Ensuite, plusieurs classes sont définies qui étendent la classe de base de SQLAlchemy, "Base". Ces classes définissent les différentes tables de la base de données avec leurs colonnes respectives, ainsi que les relations entre ces tables.
+
+Il y a une classe pour chaque table de la base de données, telle que "GameEntity" pour la table "game", "PlayerEntity" pour la table "player", etc. Chaque classe définit les colonnes de la table et les relations avec d'autres tables en utilisant les attributs de classe de SQLAlchemy, tels que "Column" et "relationship".
+
+Il semble que le projet utilise également une stratégie de suppression en cascade pour gérer les relations entre les tables de manière à ce que les données liées soient automatiquement supprimées lorsqu'une entrée est supprimée d'une table.
