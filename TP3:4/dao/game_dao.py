@@ -190,3 +190,4 @@ def find_vessel(self, vessel_id: int) -> Vessel:
     stmt = select(VesselEntity).where(VesselEntity.id == vessel_id) 
     vessel_entity = self.db_session.scalars(stmt).one()
     return map_to_vessel(vessel_entity)
+   
