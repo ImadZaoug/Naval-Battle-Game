@@ -26,14 +26,20 @@ class GameService:
         return self.game_dao.find_game(game_id)
         
     def add_vessel(self, game_id: int, player_name: str, vessel_type: str, x: int, y: int, z: int) -> bool:
+        L=[Aircraft,Cruiser,Destroyer,Frigate,Submarine]
         l=["Aircraft","Cruiser","Destroyer","Frigate","Submarine"]
+        A=0
         game = self.get_game(game_id)
         player = Player(player_name)
         if player in game.players:
-            if vessel_type in l :
-                player.battle_field.add_vessel(vessel_type(x,y,z))
-            return True
-        else:
+            for i in range(len(l)):
+                if vessel_type == l[i] :
+                    A=L[i]
+                    player.battle_field.add_vessel(A(x,y,z))
+                    return True
+                else:
+                    return False
+        else :
             return False
 
     def shoot_at(self, game_id: int, shooter_name: str, vessel_id: int, x: int, y: int, z: int) -> bool:
