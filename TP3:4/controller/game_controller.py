@@ -71,4 +71,4 @@ async def get_game_status(game_id: int, player_name: str) -> str:
 async def exception_handler(request: Request, exc: Exception):
     return JSONResponse( status_code=500, content={"message": f"{exc}"} )
 if __name__ == "__main__":
-    uvicorn.run(app, host="localhost", port=5000)
+    uvicorn.run(app, host="0.0.0.0", port=5000)
