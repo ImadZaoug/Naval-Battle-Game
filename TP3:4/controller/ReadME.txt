@@ -1,11 +1,18 @@
-Ce script définit un serveur web FastAPI qui expose un certain nombre de points de terminaison HTTP pour créer, rejoindre et interagir avec des jeux.
+# FastAPI Game Server
 
-Au début du script, plusieurs bibliothèques sont importées, notamment uvicorn, FastAPI et BaseModel de pydantic. uvicorn est un serveur web haute performance pour exécuter des applications web basées sur asyncio, et FastAPI est un cadre web moderne, rapide (haute performance) pour construire des API avec Python 3.7+ basé sur des types de données Python standard. BaseModel est une classe de pydantic qui peut être utilisée pour définir les modèles d'entrée et de sortie d'un point de terminaison API.
+This script defines a FastAPI web server that exposes several HTTP endpoints for creating, joining, and interacting with games.
 
-Ensuite, le script crée une instance de FastAPI appelée app et une instance de GameService appelée game_service. Il définit également plusieurs classes qui représentent les modèles d'entrée pour les différents points de terminaison API (CreateGameData, JoinGameData, AddVesselData et ShootAtData). Ces classes utilisent la classe BaseModel et spécifient un certain nombre de champs avec différents types de données (par exemple, player_name est une chaîne de caractères, game_id est un entier, etc.).
+## Dependencies
+At the beginning of the script, various libraries are imported, including uvicorn, FastAPI, and BaseModel from pydantic. uvicorn is a high-performance web server for running asyncio-based web applications, and FastAPI is a modern, fast (high-performance) web framework for building APIs with Python 3.7+ based on standard Python data types. BaseModel is a pydantic class that can be used to define input and output models for an API endpoint.
 
-Après avoir défini ces classes, le script définit plusieurs points de terminaison API en utilisant les décorateurs @app.post et @app.get. Ces points de terminaison permettent aux clients de créer des jeux, de rejoindre des jeux, d'ajouter des navires aux jeux, de tirer sur des navires dans les jeux et de connaître l'état d'un jeu. Chaque point de terminaison est associé à un modèle d'entrée spécifique (par exemple, create_game est associé à CreateGameData) et à un type de retour spécifique (par exemple, get_game retourne un objet Game).
+## Initialization
+The script creates an instance of FastAPI called `app` and an instance of `GameService` called `game_service`. It also defines several classes representing input models for different API endpoints (CreateGameData, JoinGameData, AddVesselData, and ShootAtData). These classes use the BaseModel class and specify a number of fields with different data types (e.g., `player_name` is a string, `game_id` is an integer, etc.).
 
-Enfin, le script définit un gestionnaire d'exceptions (exception_handler) qui sera appelé en cas d'exception lors du traitement d'une requête. Ce gestionnaire renvoie une réponse JSON avec un code de statut 500 (Erreur interne du serveur) et un message contenant l'exception qui s'est produite.
+## API Endpoints
+After defining these classes, the script defines multiple API endpoints using the `@app.post` and `@app.get` decorators. These endpoints allow clients to create games, join games, add vessels to games, shoot at vessels in games, and retrieve the state of a game. Each endpoint is associated with a specific input model (e.g., `create_game` is associated with `CreateGameData`) and a specific return type (e.g., `get_game` returns a `Game` object).
 
-En fin de script, la fonction uvicorn.run est appelée pour démarrer le serveur web, en écoutant sur l'hôte 0.0.0.0 et sur le port 5000. Cela permet aux clients d'accéder à l'API en envoyant des requêtes HTTP à l'hôte et au port spé
+## Exception Handling
+The script also defines an exception handler (`exception_handler`) that will be called in case of an exception during request processing. This handler returns a JSON response with a status code of 500 (Internal Server Error) and a message containing the occurred exception.
+
+## Server Start
+At the end of the script, the `uvicorn.run` function is called to start the web server, listening on host `0.0.0.0` and port `5000`. This allows clients to access the API by sending HTTP requests to the specified host and port.
