@@ -1,5 +1,0 @@
-Ce script utilise la bibliothèque SQLAlchemy pour définir des modèles de données en utilisant la programmation orientée objet (OOP). Chaque modèle est défini comme une classe héritant de Base, qui est une classe de base fournie par SQLAlchemy pour créer des modèles de données.
-
-Les différentes classes définies dans ce script représentent des tables dans une base de données et définissent les colonnes de chaque table ainsi que les relations entre ces tables. Par exemple, la classe GameEntity définit une table game avec une colonne id et une relation avec la table player à travers la colonne players. La classe PlayerEntity définit une table player avec une colonne id et une relation avec la table game à travers la colonne game_id.
-
-Le script crée également une instance de engine en utilisant create_engine de SQLAlchemy, qui est utilisée pour se connecter à une base de données. Enfin, le script crée une instance de Session, qui est utilisée pour interagir avec la base de données et enregistrer et récupérer des objets de ces modèles de données.
