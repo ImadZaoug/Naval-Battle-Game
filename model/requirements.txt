@@ -1,0 +1,5 @@
+pytest-watch==4.2.0
+SQLAlchemy==1.4.42
+fastapi==0.85.0 
+uvicorn==0.18.3 
+python-multipart==0.0.5
